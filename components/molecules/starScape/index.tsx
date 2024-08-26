@@ -48,7 +48,7 @@ const StarScape = ({
             );
             canvasRef.current.width = window.innerWidth;
             canvasRef.current.height = window.innerHeight;
-            starsRef.current = new Array(STAR_COUNT).fill().map(() => ({
+            starsRef.current = new Array(STAR_COUNT).fill(undefined).map(() => ({
                 hue: 0,
                 saturation: 0,
                 lightness: 100,

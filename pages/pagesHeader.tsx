@@ -10,11 +10,11 @@ const PagesHeader = ({
                      }:PagesHeaderProps) => {
     return(
             <Flex style={{justifyContent: 'center', marginBottom: 40, zIndex: 999, position: 'relative'}}>
-                <Image
+                {/*<Image
                     src={`./images/${indexPageData.image}`}
                     alt={indexPageData.name["en-US"]}
                     boxSize={"60%"}
-                />
+                />*/}
             </Flex>
     )
 }

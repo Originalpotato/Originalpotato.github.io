@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
@@ -78,6 +80,7 @@ export const getAllJournal = async () => {
         .readdirSync(JOURNALS_PATH,{
             recursive: true
         })
+        //@ts-ignore
         .filter((path) => /\.mdx?$/.test(path))
         .map((fileName) => {
             const source = getFileContent(getSlugPath(fileName));
@@ -155,6 +158,7 @@ export const getStaticPathsForJournal = () => {
         .readdirSync(JOURNALS_PATH, {
             recursive: true
         })
+        //@ts-ignore
         .filter((path) => /\.mdx?$/.test(path))
         .map((fileName) => {
             const source = getFileContent(getSlugPath(fileName));
@@ -179,6 +183,7 @@ export const getAllPortfolio = () => {
         .readdirSync(PORTFOLIOS_PATH,{
             recursive: true
         })
+        //@ts-ignore
         .filter((path) => /\.mdx?$/.test(path))
         .map((fileName) => {
             const source = getFileContent(getSlugPath(fileName));

@@ -2,17 +2,18 @@
 import {ChakraProvider, useColorMode} from "@chakra-ui/react";
 import theme from "../data/themes/theme";
 import type {AppProps} from 'next/app'
-import '@fontsource/press-start-2p'
-import '@fontsource/roboto/900.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/caveat/400.css';
-import '@fontsource/handlee/400.css';
-import '@fontsource/open-sans/500.css'
-import '@fontsource/open-sans/500-italic.css'
+//import '@fontsource/press-start-2p'
+//import '@fontsource/roboto/900.css';
+//import '@fontsource/roboto/400.css';
+//import '@fontsource/caveat/400.css';
+//import '@fontsource/handlee/400.css';
+//import '@fontsource/open-sans/500.css'
+//import '@fontsource/open-sans/500-italic.css'
 import Script from "next/script";
 //import * as gtag from "../lib/gtag";
 import {useRouter} from "next/router";
 import {FC, useEffect} from "react";
+
 
 const MyApp:FC<AppProps> = ({Component, pageProps}) =>{
     const {colorMode, toggleColorMode} = useColorMode();
@@ -29,7 +30,7 @@ const MyApp:FC<AppProps> = ({Component, pageProps}) =>{
     }, [router.events]);
 
     return (
-        <>
+        <main>
 
             {/* Global Site Tag (gtag.js) - Google Analytics */}
             {/*
@@ -57,7 +58,7 @@ const MyApp:FC<AppProps> = ({Component, pageProps}) =>{
                 {/*@ts-ignore*/}
                 <Component {...pageProps}/>
             </ChakraProvider>
-        </>
+        </main>
     );
 }
 

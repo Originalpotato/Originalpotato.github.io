@@ -17,6 +17,15 @@ import VideoEmbed from "../components/molecules/videoEmbed";
 import SpaceShip from "../components/molecules/spaceShip";
 import PagesHeaderMenu from "./pagesHeaderMenu";
 
+//👇 Import Open Sans font
+import {Press_Start_2P} from 'next/font/google'
+
+//👇 Configure our font object
+const pressStart2P = Press_Start_2P({
+    weight: '400',
+    subsets: ['latin']
+})
+
 
 const IndexPage: React.FC<{
     indexPageData: IndexPageDataModel;
@@ -92,11 +101,11 @@ const IndexPage: React.FC<{
             <br/>
 
             <Image src='images/solarSystem.png'
-            style={{
-                position: 'absolute',
-                left: 500,
-                top: 0,
-            }}/>
+                   style={{
+                       position: 'absolute',
+                       left: 500,
+                       top: 0,
+                   }}/>
 
             <StarScape
                 densityRatio={DEFAULT_DENSITY}
@@ -167,7 +176,7 @@ const IndexPage: React.FC<{
                 {filteredJournals.map((journal, key) => {
                     const date = dateToDay(journal.frontmatter.date);
                     const slugs = journal.slug
-                    const slugPath =  slugs.join('/')
+                    const slugPath = slugs.join('/')
                     console.log("SLUG PATH", slugPath)
 
 
@@ -183,40 +192,44 @@ const IndexPage: React.FC<{
                                     e.preventDefault();
                                     router.push(`journals/${slugPath}`)
                                 }}>
-                        <JournalSummary
-                            day={date.day}
-                            state={mouseOverJournalState === journal.frontmatter.date ? "over" : "default"}
-                            month={monthNumberToMonthName(date.month)}>
+                        <div className={pressStart2P.className}>
+                            <JournalSummary
+                                day={date.day}
+                                state={mouseOverJournalState === journal.frontmatter.date ? "over" : "default"}
+                                month={monthNumberToMonthName(date.month)}>
 
-                            <Text  fontSize={['xs', 'sm', 'xl', '2xl']}  style={{fontWeight: 'bold'}}>{journal.frontmatter.title}</Text>
-                            <SimpleGrid columns={[1, null, 2]} spacing={8} style={{marginTop: 10}}>
+                                <Text fontSize={['xs', 'sm', 'xl', '2xl']}
+                                      style={{fontWeight: 'bold'}}>{journal.frontmatter.title}</Text>
+                                <SimpleGrid columns={[1, null, 2]} spacing={8} style={{marginTop: 10}}>
 
-                                {journal.frontmatter.cover.includes('mp4') ?
+                                    {journal.frontmatter.cover.includes('mp4') ?
 
-                                    <VideoEmbed src={journal.frontmatter.cover}/>
+                                        <VideoEmbed src={journal.frontmatter.cover}/>
 
-                                    :
+                                        :
 
-                                    <Image src={`${journal.frontmatter.cover}`}
-                                           style={{
-                                               borderRadius: 20,
-                                               borderColor: 'white',
-                                               borderWidth: 2,
-                                               borderStyle: 'solid'
-                                           }}/>
-                                }
+                                        <Image src={`${journal.frontmatter.cover}`}
+                                               style={{
+                                                   borderRadius: 20,
+                                                   borderColor: 'white',
+                                                   borderWidth: 2,
+                                                   borderStyle: 'solid'
+                                               }}/>
+                                    }
 
-                                <Box fontSize={['xs', 'sm', 'xl', '2xl']}>
-                                    <span dangerouslySetInnerHTML={{__html: journal.frontmatter.summary}}/>
-                                    &nbsp;<Link color='secondary.400' href={`journals/${slugPath}`}
-                                                style={{fontWeight: "bold"}}>{journal.frontmatter.readMore}</Link>
-                                </Box>
+                                    <Box fontSize={['xs', 'sm', 'xl', '2xl']}>
+                                        <span dangerouslySetInnerHTML={{__html: journal.frontmatter.summary}}/>
+                                        &nbsp;<Link color='secondary.400' href={`journals/${slugPath}`}
+                                                    style={{fontWeight: "bold"}}>{journal.frontmatter.readMore}</Link>
+                                    </Box>
 
 
-                            </SimpleGrid>
+                                </SimpleGrid>
 
-                        </JournalSummary>
+                            </JournalSummary>
+                        </div>
                     </Box>
+
                 })}
 
 
